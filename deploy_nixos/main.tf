@@ -172,13 +172,6 @@ resource "null_resource" "deploy_nixos" {
     destination = "maybe-sudo.sh"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x unpack-keys.sh maybe-sudo.sh",
-      "./maybe-sudo.sh ./unpack-keys.sh ./packed-keys.json",
-    ]
-  }
-
   # do the actual deployment
   provisioner "local-exec" {
     interpreter = concat([
